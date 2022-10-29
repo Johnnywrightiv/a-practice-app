@@ -1,3 +1,4 @@
+<!--Prettier plugin keeps formatting my code ugly & idk how to stop it :D-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +9,106 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
   <body>
-    <h1>It's A Practice App</h1>
+    <h1>It's A Practice App 🎸</h1>
+
+    <div class="display-area">
+      <p id="current note">A#</p>
+    </div>
+
+    <!---Selects whether to cycle notes through The Cycle of 4ths, or return random notes--->
+    <div id="sliders">
+      <label id="random-notes" class="toggle-switch"
+        >Random Notes?
+        <input type="checkbox" />
+        <span class="slider round"></span>
+      </label>
+      <!-- <br /> -->
+
+      <!---Selects whether to repeat notes on direction change--->
+      <label id="repeat-notes" class="toggle-switch"
+        >Repeat Top/Bottom Notes?
+        <input type="checkbox" />
+        <span class="slider round"></span>
+      </label>
+      <!-- <br /> -->
+
+      <!---Selects whether to switch to next note after direction switch or full ascending/descending cycle--->
+      <label id="change-note-on-direction" class="toggle-switch"
+        >Change Note on Direction Change?
+        <input type="checkbox" />
+        <span class="slider round"></span>
+      </label>
+      <!-- <br /> -->
+    </div>
+
+    <!---Get number of instrument strings--->
+    <label id="num-strings" class="number-input"
+      >Number of Strings:
+      <input type="number" value="6" min="4" max="9" />
+      <span class="input round"></span>
+    </label>
+
+    <!---Get tempo--->
+    <label id="tempo" class="number-input"
+      >Tempo:
+      <input type="number" value="60" min="30" max="240" />
+      <span class="input round"></span>
+    </label>
+
+    <!---Choose between using no, some, or all accidentals--->
+    <div class="toggle-switch" id="accidentals-selection">
+      <label id="sharps" class="radio-input"
+        >Accidentals:
+        <input
+          type="radio"
+          id="no-accidental"
+          name="accidentals"
+          value="none"
+        />
+        <label for="accidentals">None</label>
+        <input type="radio" id="sharps" name="accidentals" value="sharps" />
+        <label for="accidentals">Sharps (#)</label>
+        <input type="radio" id="flats" name="accidentals" value="flats" />
+        <label for="accidentals">Flats (<em>b</em>)</label>
+        <input
+          type="radio"
+          id="both-accidentals"
+          name="accidentals"
+          value="both"
+        />
+        <label for="accidentals">Both</label>
+        <span class="radio-buttons"></span>
+      </label>
+    </div>
+
+    <!---Set number of minutes for practice to run--->
+    <label class="number-input"
+      >Minutes to Practice:
+      <input
+        type="number"
+        value="10"
+        id="practice-time"
+        name="practice-length"
+      />
+      <span class=""></span>
+    </label>
+
+    <div class="control-buttons">
+      <!---Button to start/stop practice--->
+      <label id="start-stop-button" class="button"
+        >Start/Stop
+        <input type="button" value="Start/Stop" />
+        <span class=""></span>
+      </label>
+
+      <!---Button to pause practice--->
+      <label id="pause-button" class="button"
+        >Pause
+        <input type="button" value="Pause" />
+        <span class=""></span>
+      </label>
+    </div>
+
     <script src="./main.js"></script>
   </body>
 </html>
