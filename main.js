@@ -71,3 +71,56 @@ let circleOffNote = function (note) {
 // testing funcs
 console.log(cycleOffNote(noteChoice));
 console.log(circleOffNote(noteChoice));
+
+
+// Start Countdown Timer on Event
+document.getElementById('start-button').addEventListener('click', function () {
+  // access time display elements in DOM 
+  var minsDisplay = document.getElementById('minutes');
+  var secsDisplay = document.getElementById('seconds');
+  var tensDisplay = document.getElementById('tens');
+
+  var minsToPractice = document.getElementById('mins-to-practice').value; // store user input
+  var secondsLeft; // use for countdown
+  console.log(minsDisplay);
+  console.log(minsToPractice);
+  minsDisplay.innerHTML = minsToPractice; // 'push' user time input into timer
+});
+
+document.getElementById('pause-button').addEventListener('click', function () {}); // pause timer
+document.getElementById('reset-button').addEventListener('click', function () {}); // reset timer props
+
+
+
+// OLD STOPWATCH LOGIC ---> Use for inspiriation to code countdown timer
+// function startTimer () {
+//   tens++;
+
+//   if (tens <= 9) {
+//       document.getElementById('tens').innerHTML = "0" + tens;
+//   }
+
+//   if (tens > 9) {
+//       document.getElementById('tens').innerHTML = tens;
+//   }
+
+//   if (tens > 99) {
+//       console.log('seconds');
+//       seconds++;
+//       document.getElementById('seconds').innerHTML = "0" + seconds;
+//       tens = 0;
+//       document.getElementById('tens').innerHTML = "0" + 0
+//   }
+
+//   if (seconds > 9) {
+//       document.getElementById('seconds').innerHTML = seconds;
+//   }
+
+//   if (seconds >= 60) {
+//       console.log('minutes')
+//       minutes++;
+//       document.getElementById('minutes').innerHTML = "0" + minutes;
+//       seconds = 0;
+//       document.getElementById('seconds').innerHTML = "0" + 0
+//   }
+// }

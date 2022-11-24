@@ -1,8 +1,20 @@
-h1 {
+/* h1 {
   color: palevioletred;
   text-align: center;
+} */
+
+#current-note {
+  padding: 120px;
+  margin: 25px;
+  font-size: 50px;
+  background-color: black;
+  color: wheat;
 }
 
-.container {
-  margin: 20px, 0;
+.red-required {
+  color: red;
 }
+
+/* .container {
+  margin: 20px, 0;
+} */
