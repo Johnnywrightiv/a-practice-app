@@ -13,6 +13,7 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <link rel="stylesheet" href="bootstrap-breakpoint.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -54,156 +55,162 @@
       </div>
     </div>
     
-    <!-- Alert Example -->
+    <!-- Alert Example
     <div class="alert alert-success alert-dismissible fade text-center" id="alert-example" role="alert">
       Hi, welcome to the app! - 
       <a href="https://d.newsweek.com/en/full/1920025/cat-its-mouth-open.jpg?w=1600&h=1600&q=88&f=b7a44663e082b8041129616b6b73328d" class="alert-link">Don't you dare click me.</a>
       <button class="btn-close" aria-label="close" data-bs-dismiss="alert"></button>
     </div>
-    <hr>
+    <hr> -->
 
     <!-- Display Area -->
-    <div class="mt-3 container display-area">
-      <div class="row">
+    <div class="mt-3 container display-area text-center">
+      <div class="box">
+        <h1 class="pt-3">Current Note: </h1>
+        <div id="current-note" class="row border border-white border-3 rounded-5">
+          <div class="col col-6">
+            <p>A#</p>
+          </div>
+          <div class="col col-6">
+            <i class="fa fa-up-long"></i>
+            <i class="fa fa-down-long"></i>
+          </div>
+        </div>
         <div class="col col-12 col-lg-10 offset-lg-1">
-          <div class="display-area box text-center">
-            <h1 class="pt-3">Current Note: </h1>
-            <p id="current-note" class="d-flex justify-content-center border border-white border-3 rounded-5">A# &nbsp; &nbsp; &nbsp;<img src="uparrow-white.png" id="direction-arrow" alt="notes ascending or descending" style="width: 120px;"> </p>
-            <div class="container timer-box justify-content-between">
-              <div class="row">
-                <div class="col-6">
-                  <small class="">Next Note: <span class="" id="next-note">_</span></small>
-                </div>
-                <div class="col-6 col-lg-4">
-                  <small class="">Time Left: <span id="minutes-left">00</span>:<span id="seconds-left">00</span></small>
-                </div>
+          <div class="container timer-box justify-content-between">
+            <div class="row">
+              <div class="col-6">
+                <small class="">Next Note: <span class="" id="next-note">_</span></small>
+              </div>
+              <div class="col-6 col-lg-4">
+                <small class="">Time Left: <span id="minutes-left">00</span>:<span id="seconds-left">00</span></small>
               </div>
             </div>
-            <hr> 
+          </div>
+          <hr> 
 
-            <!-- Control Area -->
-            <div class="row control-area">
-              <!---Set number of minutes for practice to run--->
-              <div class="col">
-                <label class="small form-label"
-                  >Minutes to Practice:
-                  <input
-                    class="d-xxl-block offset-xxl-1"
-                    id="mins-to-practice"
-                    type="number"
-                    value="10"
-                    id="practice-time"
-                    name="practice-length"
-                    style="width: 200px; text-align: center;"
-                  />
-                </label>
-              </div>
+          <!-- Control Area -->
+          <div class="row control-area">
+            <!---Set number of minutes for practice to run--->
+            <div class="col">
+              <label class="small form-label"
+                >Minutes to Practice:
+                <input
+                  class="d-xxl-block offset-xxl-1"
+                  id="mins-to-practice"
+                  type="number"
+                  value="10"
+                  id="practice-time"
+                  name="practice-length"
+                  style="width: 200px; text-align: center;"
+                />
+              </label>
+            </div>
 
-              <div class="col" style="border: medium dashed red">
-                <!---Get tempo--->
-                <form action="get-tempo">
-                  <label for="tempo" class="small form-label">Tempo: <span id="user-tempo">60</span></label>
-                  <div class="input-group offset-md-2 offset-xl-3">
-                    <button class="btn btn-primary" id="decrease-tempo">-</button>
-                    <div class="input-group-text">
-                      <input type="range" class="form-range" id="tempo" value="60" min="30" max="200">
-                    </div>
-                    <button class="btn btn-primary" id="increase-tempo">+</button>
+            <div class="col" style="border: medium dashed red">
+              <!---Get tempo--->
+              <form action="get-tempo">
+                <label for="tempo" class="small form-label">Tempo: <span id="user-tempo">60</span></label>
+                <div class="input-group offset-md-2 offset-xl-3">
+                  <button class="btn btn-primary" id="decrease-tempo">-</button>
+                  <div class="input-group-text">
+                    <input type="range" class="form-range" id="tempo" value="60" min="30" max="200">
                   </div>
-                </form>
-              </div>
+                  <button class="btn btn-primary" id="increase-tempo">+</button>
+                </div>
+              </form>
+            </div>
 
-              <div class="control-buttons">
-                <hr>
-                <!---Button to start practice--->
-                <button id="start-button" class="btn btn-outline-success active" data-bs-toggle="button" aria-pressed="true">Start</button>
-                  
-                  <!---Button to pause practice--->
-                <button id="pause-button" class="btn btn-danger disabled">Pause</button>
+            <div class="control-buttons">
+              <hr>
+              <!---Button to start practice--->
+              <button id="start-button" class="btn btn-outline-success active" data-bs-toggle="button" aria-pressed="true">Start</button>
                 
                 <!---Button to pause practice--->
-                <button id="reset-button" class="btn btn-warning">Reset</button>
+              <button id="pause-button" class="btn btn-danger disabled">Pause</button>
+              
+              <!---Button to pause practice--->
+              <button id="reset-button" class="btn btn-warning">Reset</button>
 
-                <!-- Modal Section -->
-                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal">Settings</button>
-                <div class="modal modal-lg fade" id="modal">
-                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h2>App Settings</h2>
-                        <button class="btn-close" data-bs-dismiss="modal" data-bs-target="#modal"></button>
-                      </div>
-                      <div class="modal-body">
-                        <!-- Settings Area -->
-                        <div class="mt-3 container options-area">
-                          <div class="row">
-                              <div class="user-options box container">
-                                <form action="user-settings">
-                                  <!---Selects whether to cycle notes through the Cycle of 4ths/Circle of 5ths or return random notes--->
-                                  <div class="small form-check form-switch form-check-inline float-start">
-                                    <label id="random-notes" class="form-check-label"
-                                      >Random Notes
-                                      <input type="checkbox" class="form-check-input form-control/">
-                                    </label>
-                                  </div>
-                                  <br>
-                                  <!---Selects whether to repeat notes on direction change--->
-                                  <div class="small form-check form-switch form-check-inline float-start">
-                                    <label id="repeat-notes" class="form-check-label"
-                                      >Repeat Top/Bottom Notes
-                                      <input type="checkbox" class="form-check-input form-control/">
-                                    </label>
-                                  </div>
-                                  <!---Selects whether to switch to next note after direction switch or full ascending/descending cycle--->
-                                  <div class="small form-check form-switch form-check-inline float-start">
-                                    <label id="change-note-on-direction" class="form-check-label"
-                                      >Change Note with Direction
-                                      <input type="checkbox" class="form-check-input form-control/">
-                                    </label>
-                                    <!-- <hr> -->
-                                  </div>
+              <!-- Modal Section -->
+              <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal">Settings</button>
+              <div class="modal modal-lg fade" id="modal">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2>App Settings</h2>
+                      <button class="btn-close" data-bs-dismiss="modal" data-bs-target="#modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <!-- Settings Area -->
+                      <div class="mt-3 container options-area">
+                        <div class="row">
+                            <div class="user-options box container">
+                              <form action="user-settings">
+                                <!---Selects whether to cycle notes through the Cycle of 4ths/Circle of 5ths or return random notes--->
+                                <div class="small form-check form-switch form-check-inline float-start">
+                                  <label id="random-notes" class="form-check-label"
+                                    >Random Notes
+                                    <input type="checkbox" class="form-check-input form-control/">
+                                  </label>
+                                </div>
+                                <br>
+                                <!---Selects whether to repeat notes on direction change--->
+                                <div class="small form-check form-switch form-check-inline float-start">
+                                  <label id="repeat-notes" class="form-check-label"
+                                    >Repeat Top/Bottom Notes
+                                    <input type="checkbox" class="form-check-input form-control/">
+                                  </label>
+                                </div>
+                                <!---Selects whether to switch to next note after direction switch or full ascending/descending cycle--->
+                                <div class="small form-check form-switch form-check-inline float-start">
+                                  <label id="change-note-on-direction" class="form-check-label"
+                                    >Change Note with Direction
+                                    <input type="checkbox" class="form-check-input form-control/">
+                                  </label>
+                                  <!-- <hr> -->
+                                </div>
 
-                                  <!---Get number of instrument strings--->
-                                  <div>
-                                    <label id="num-strings" class="small form-label"
-                                    >Number of Strings:
-                                      <input type="number" class="form-control" value="6" min="4" max="8" />
-                                    </label>
-                                    <!-- <hr> -->
-                                  </div>
+                                <!---Get number of instrument strings--->
+                                <div>
+                                  <label id="num-strings" class="small form-label"
+                                  >Number of Strings:
+                                    <input type="number" class="form-control" value="6" min="4" max="8" />
+                                  </label>
+                                  <!-- <hr> -->
+                                </div>
 
-                                  <!---Choose between using no, some, or all accidentals--->
-                                  <label for="accidental-selection" class="small form-label">Accidentals:</label>
-                                  <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-outline-primary active">
-                                      <input type="radio" name="options" id="accidentals-none" checked> None
-                                    </label>
-                                    <label class="btn btn-outline-primary">
-                                      <input type="radio" name="options" id="accidentals-sharps"> Sharps (<em>#</em>)
-                                    </label>
-                                    <label class="btn btn-outline-primary">
-                                      <input type="radio" name="options" id="accidentals-flats"> Flats (<em>b</em>)
-                                    </label>
-                                    <label class="btn btn-outline-primary">
-                                      <input type="radio" name="options" id="accidentals-both"> Both (All Notes)
-                                    </label>
-                                  </div>
-                                </form>          
-                              </div>
+                                <!---Choose between using no, some, or all accidentals--->
+                                <label for="accidental-selection" class="small form-label">Accidentals:</label>
+                                <div class="btn-group" data-toggle="buttons">
+                                  <label class="btn btn-outline-primary active">
+                                    <input type="radio" name="options" id="accidentals-none" checked> None
+                                  </label>
+                                  <label class="btn btn-outline-primary">
+                                    <input type="radio" name="options" id="accidentals-sharps"> Sharps (<em>#</em>)
+                                  </label>
+                                  <label class="btn btn-outline-primary">
+                                    <input type="radio" name="options" id="accidentals-flats"> Flats (<em>b</em>)
+                                  </label>
+                                  <label class="btn btn-outline-primary">
+                                    <input type="radio" name="options" id="accidentals-both"> Both (All Notes)
+                                  </label>
+                                </div>
+                              </form>          
                             </div>
                           </div>
                         </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <hr>
           </div>
+          <hr>
         </div>
       </div>
     </div>
@@ -427,19 +434,19 @@
     <script>
       const $careersLink = $('#careers-link');
       $careersLink.click(function () {
-        alert("Gimme a good one, pretty please 🙏🏽😉💰📆🏖🎶")
+        alert("🙏🏽😉💰📆🏖🎶")
       })
     </script>
     <!-- JavaScript 'Alert Example' Delay -->
-    <script>
+    <!-- <script>
       window.onload = function() {    
-        let $appAlert = $('#alert-example')
+        let $appx = $('#alert-example')
         function showAlert() {
           $appAlert.addClass('show')        
         }
         setInterval(showAlert, 1500);
       }
-    </script>
+    </script> -->
     <!-- Linked JS File -->
     <script src="./main.js"></script>
   </body>
