@@ -3,7 +3,7 @@ import '../bootstrap-breakpoint.css'
 
 const App = () => {
   return (
-    <h1>howdy</h1>
+    <h1>howdy pals</h1>
   );
 }
 
