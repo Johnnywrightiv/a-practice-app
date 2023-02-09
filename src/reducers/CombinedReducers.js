@@ -1,9 +1,9 @@
-// import { combineReducers } from "redux";
-import { exampleReducer } from "./Reducers";
+import { combineReducers } from "redux";
+import { reducers } from "./Reducers";
 
-// redux store object with state
+// redux store with state object
 const rootReducer = combineReducers({
-  keyName: exampleReducer
+  state: reducers,
 });
 
-export default rootReducer
+export default rootReducer;

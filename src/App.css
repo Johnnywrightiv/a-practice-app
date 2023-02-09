@@ -1,17 +1,9 @@
 #current-note {
   padding: 50px;
-  margin: 25px;
+  margin: 8px 12px 8px 0px;
   font-size: 120px;
   background-color: black;
   color: wheat;
-}
-
-.red-required {
-  color: red;
-}
-
-body {
-  background-color: wheat;
 }
 
 .box {
@@ -21,4 +13,42 @@ body {
   font-size: 2rem;
   border-radius: 5px;
   padding: 10px;
+}
+
+.navbar {
+  padding: 10px 25px;
+}
+
+.navbar {
+  background: linear-gradient(to right, #4a62e9, #30b482);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  color: #fbfbff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #fbfbff;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #9da8e6;
+}
+
+.nav-link.ms-auto:hover {
+  color: #0f1641;
+}
+
+.nav-link.active {
+  font-weight: 500;
+}
+
+#current-note,
+#control-buttons {
+  text-align: center;
 }
