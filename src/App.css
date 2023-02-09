@@ -1,25 +1,18 @@
 #current-note {
   padding: 50px;
-  margin: 8px 12px 8px 0px;
+  margin: 8px 0px -20px 0px;
   font-size: 120px;
-  background-color: black;
-  color: wheat;
 }
 
-.box {
-  background-color: lightblue;
-  border: 1px solid blue;
-  min-height: 50px;
-  font-size: 2rem;
-  border-radius: 5px;
-  padding: 10px;
+#note-display-area {
+  margin-top: 16px;
+  background-color: black;
+  color: wheat;
+  border-radius: 50px;
 }
 
 .navbar {
   padding: 10px 25px;
-}
-
-.navbar {
   background: linear-gradient(to right, #4a62e9, #30b482);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
@@ -36,19 +29,32 @@
   transition: all 0.3s ease;
 }
 
-.nav-link:hover {
-  color: #9da8e6;
-}
-
-.nav-link.ms-auto:hover {
+.nav-link.ms-auto:hover,
+.nav-link:hover,
+#nav-brand:hover {
   color: #0f1641;
 }
 
-.nav-link.active {
+.nav-link.active,
+Form {
   font-weight: 500;
 }
 
 #current-note,
 #control-buttons {
   text-align: center;
+}
+
+.settings-option:hover,
+#practice-length:hover {
+  background-color: rgba(156, 251, 224, 0.233);
+}
+
+#settings-header {
+  text-decoration: underline;
+  margin-bottom: 20px;
+}
+
+.settings-option .form-check-label {
+  padding-right: 40px;
 }
