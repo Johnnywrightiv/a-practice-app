@@ -1,10 +1,38 @@
-export const TEST_ACTION = "TEST_ACTION";
+export const PLAY_PRACTICE = "PLAY_PRACTICE";
+export const PAUSE_PRACTICE = "PAUSE_PRACTICE";
+export const STOP_PRACTICE = "STOP_PRACTICE";
+export const RESET_PRACTICE = "RESET_PRACTICE";
 
-export function testAction() {
-  alert('test action')
-  
+
+export function playPractice() {
   return {
-    type: TEST_ACTION,
-    payload: 'something'
+    type: PLAY_PRACTICE,
+    payload: {
+      practiceRunning: true,
+      practicePaused: false,
+    },
+  };
+};
+
+export function pausePractice() {
+  return {
+    type: PAUSE_PRACTICE,
+    payload: {
+      practicePaused: true,
+    },
+  };
+};
+
+export function stopPractice() {
+  return {
+    type: STOP_PRACTICE,
+    payload: false,
+  };
+};
+
+export function resetPractice() {
+  return {
+    type: RESET_PRACTICE,
+    payload: false,
   };
 };

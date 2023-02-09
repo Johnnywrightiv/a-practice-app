@@ -5,7 +5,8 @@ const MorePracticeIdeas = () => {
       <ul>
         <li>ear training?</li>
         <li>soloing and improvisation?</li>
-        <li></li>
+        <li>chord progression generator?</li>
+        <li>rhythm stuff?</li>
       </ul>
     </div>
   );
