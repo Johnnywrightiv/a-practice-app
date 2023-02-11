@@ -58,3 +58,8 @@ Form {
 .settings-option .form-check-label {
   padding-right: 40px;
 }
+
+#countdown-timer {
+  text-align: center;
+  padding: 15px;
+}

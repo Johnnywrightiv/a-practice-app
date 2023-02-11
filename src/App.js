@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Home from './components/Home';
-import Metronome from './components/Metronome';
 import PracticeFretboard from './components/PracticeFretboard';
 import PracticeScales from './components/PracticeScales';
 import PracticeChords from './components/PracticeChords';
@@ -16,7 +15,6 @@ const App = () => {
     <div>
       <Header />
       <Container>
-        {/* <Metronome /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/fretboard" element={<PracticeFretboard />} />
