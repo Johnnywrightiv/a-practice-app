@@ -1,4 +1,4 @@
-import { PLAY_PRACTICE, PAUSE_PRACTICE, STOP_PRACTICE, RESET_PRACTICE } from "../actions";
+import { PLAY_PRACTICE, PAUSE_PRACTICE, STOP_PRACTICE, RESET_PRACTICE } from "../Actions";
 
 const initialState = {
   practiceRunning: false,

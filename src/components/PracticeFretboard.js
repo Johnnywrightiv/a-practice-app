@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Row, Button, Form, ButtonGroup, ToggleButton } from "react-bootstrap";
-import { playPractice, pausePractice, stopPractice } from "../actions";
+import { playPractice, pausePractice, stopPractice } from "../Actions";
 import { useSelector, useDispatch } from "react-redux";
 import Timer from "./Timer";
 
