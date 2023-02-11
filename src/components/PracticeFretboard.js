@@ -1,37 +1,46 @@
 import { useState } from "react";
 import { Row, Button, Form, ButtonGroup, ToggleButton } from "react-bootstrap";
-import { playPractice, pausePractice, stopPractice, resetPractice } from "../actions";
+import { playPractice, pausePractice, stopPractice } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
+import Timer from "./Timer";
+
+import musicLogic from "../music-logic.js"
 
 const PracticeFretboard = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.state)
+  const [startCountdown, setStartCountdown] = useState(false);
+  const [practiceLength, setPracticeLength] = useState();
   const [showSettings, setShowSettings] = useState(false);
   const [numberStrings, setNumberStrings] = useState(6);
   const [useRandomNotes, setUseRandomNotes] = useState(false);
-  const [changeNoteFreq, setChangeNoteFreq] = useState(false);
-  const [practiceLength, setPracticeLength] = useState();
-  
+  const [changeNote, setChangeNote] = useState(false);
   const [accidentalSelection, setAccidentalSelection] = useState('None');
 
   const handlePlayPauseClick = () => {
     if (!state.practiceRunning || state.practicePaused) {
-      dispatch(playPractice())
-    } else if (state.practiceRunning) {
+      if (practiceLength && practiceLength > 0) {
+        setShowSettings(false);
+        setStartCountdown(true);
+        dispatch(playPractice());
+      } else {
+        alert('Enter a number greater than 0 and press Play.')
+      }
+    } else {
       dispatch(pausePractice());
     } 
   };
 
   const handleStopClick = () => {
+    setStartCountdown(false);
+    setPracticeLength(undefined); // resets practice length on stop. maybe remove for quick re-start?
     dispatch(stopPractice());
   };
 
-  const handleResetClick = () => {
-    dispatch(resetPractice());
-  };
-
   const handleSettingsClick = () => {
-    setShowSettings(!showSettings)
+    if (!state.practiceRunning || state.practicePaused) {
+      setShowSettings(!showSettings);
+    }
   };
 
   return (
@@ -39,32 +48,48 @@ const PracticeFretboard = () => {
       <h1>Fretboard Practice</h1>
       <h5>(Note Memorization)</h5>
 
-      <div id="note-display-area" className="col-10 offset-1">
+      <div id="note-display-area" className="">
         <div id="current-note">F</div>
         <div className="text-center mb-3">Next Note: <span id="next-note">Bb</span></div>
       </div>
 
-      <Form.Group 
-        className="pb-4 col-6 offset-3 text-center" 
-        id="practice-length"
-        controlId="practice-time">
-        <Form.Label 
-          id="time-header"
-          className="m-2 pt-2">Practice Time:</Form.Label>
-        <Form.Control 
-          onChange={(e) => setPracticeLength(parseInt(e.target.value))}
-          className="text-center" 
-          type="number" 
-          placeholder="# of minutes to practice"
-          min="1" 
-          max="30" />
-      </Form.Group>
+      {!state.practiceRunning ? (
+        <Form.Group 
+          className="mt-2 mb-2 col-6 offset-3 text-center" 
+          id="practice-length"
+          controlId="practice-time">
+          <Form.Label 
+            id="time-header"
+            className="">Practice Time:</Form.Label>
+          <Form.Control 
+            onChange={(e) => setPracticeLength(parseInt(e.target.value))}
+            className="text-center" 
+            type="number" 
+            placeholder="# of minutes to practice"
+            min="1" 
+            max="30" />
+        </Form.Group>
+      ) : (
+        <Timer minutes={practiceLength} />
+      )}
 
       <div id="control-buttons">
-        <Button variant="success m-1" onClick={handlePlayPauseClick}>Play/Pause</Button>
-        <Button variant="danger m-1" onClick={handleStopClick}>Stop</Button>
-        <Button variant="warning m-1" onClick={handleResetClick}>Reset</Button>
-        <Button variant="secondary m-1" onClick={handleSettingsClick}>Settings</Button>
+        <Button 
+          variant="success m-1" 
+          onClick={handlePlayPauseClick}
+          >Play/Pause
+        </Button>
+        <Button 
+          variant="danger m-1" 
+          onClick={handleStopClick}
+          >Stop
+        </Button>
+        <Button 
+          variant="secondary m-1" 
+          disabled={state.practiceRunning && !state.practicePaused}
+          onClick={handleSettingsClick}
+          >Settings
+        </Button>
 
         {showSettings && (
           <div>
@@ -104,7 +129,7 @@ const PracticeFretboard = () => {
                   <Form.Check
                     type="switch"
                     label="Change Note with Direction" 
-                    onChange={(e) => setChangeNoteFreq(e.target.checked)}
+                    onChange={(e) => setChangeNote(e.target.checked)}
                     />
                   <Form.Text 
                     className="text-muted">
@@ -173,7 +198,6 @@ const PracticeFretboard = () => {
                     </ButtonGroup>
                   </div>
                 </Form.Group>
-
               </Form>
             </div>
           </div>
