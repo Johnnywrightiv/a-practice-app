@@ -1,7 +1,7 @@
 export const PLAY_PRACTICE = "PLAY_PRACTICE";
 export const PAUSE_PRACTICE = "PAUSE_PRACTICE";
 export const STOP_PRACTICE = "STOP_PRACTICE";
-
+export const LOGIN = 'LOGIN';
 
 export function playPractice() {
   return {
@@ -29,6 +29,15 @@ export function stopPractice() {
     payload: {
       practiceRunning: false,
       practicePaused: false,
+    },
+  };
+};
+
+export function logIn() {
+  return {
+    type: LOGIN,
+    payload: {
+      loggedIn: true
     },
   };
 };

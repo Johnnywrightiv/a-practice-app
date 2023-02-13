@@ -2,7 +2,10 @@ import { useState } from "react";
 import { Row, Button, Form, ButtonGroup, ToggleButton } from "react-bootstrap";
 import { playPractice, pausePractice, stopPractice } from "../Actions";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay, faPause, faStop, faGear, faWrench } from '@fortawesome/free-solid-svg-icons';
 import Timer from "./Timer";
+import Metronome from './Metronome';
 
 import musicLogic from "../music-logic.js"
 
@@ -77,19 +80,25 @@ const PracticeFretboard = () => {
         <Button 
           variant="success m-1" 
           onClick={handlePlayPauseClick}
-          >Play/Pause
+          style={{ width: 50, height: 50, padding: 0, margin: 0 }}
+          ><FontAwesomeIcon 
+          icon={state.practiceRunning && !state.practicePaused ? faPause : faPlay} 
+          style={{ fontSize: 30 }} 
+        />
         </Button>
         <Button 
           variant="danger m-1" 
           onClick={handleStopClick}
-          >Stop
+          ><FontAwesomeIcon icon={faStop} style={{ fontSize: 30 }}/>
         </Button>
         <Button 
           variant="secondary m-1" 
           disabled={state.practiceRunning && !state.practicePaused}
           onClick={handleSettingsClick}
-          >Settings
+          ><FontAwesomeIcon icon={faGear} style={{ fontSize: 30 }} />
         </Button>
+
+        <Metronome />
 
         {showSettings && (
           <div>
