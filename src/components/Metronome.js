@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquareMinus, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
+import { Button } from "react-bootstrap";
 
 const Metronome = () => {
   const [tempo, setTempo] = useState(120);
@@ -25,16 +28,20 @@ const Metronome = () => {
   };
 
   const handleIncrementBeatsPerMeasure = () => {
-    setBeatsPerMeasure(beatsPerMeasure + 1);
+    if (parseInt(beatsPerMeasure) !== 16) {
+      setBeatsPerMeasure(beatsPerMeasure + 1);
+    }
   };
-
+  
   const handleDecrementBeatsPerMeasure = () => {
-    setBeatsPerMeasure(beatsPerMeasure - 1);
+    if (parseInt(beatsPerMeasure) !== 1) {
+      setBeatsPerMeasure(beatsPerMeasure - 1);
+    }
   };
 
   return (
-    <div className="metronome">
-      <h2>Tempo: {tempo}</h2>
+    <div className="metronome text-center m-3">
+      <h4>Tempo: {tempo}</h4>
       <em>{
           tempo <= 24 ? "Larghissimo" :
           tempo <= 40 ? "Adagissimo" : 
@@ -51,8 +58,8 @@ const Metronome = () => {
           tempo <= 200 ? "Presto" : "Prestissimo"
         }</em>
 
-      <div className="tempo-controls">
-        <button onClick={handleDecrementTempo}>-</button>
+      <div className="tempo-controls" style={{ display: 'flex', justifyContent: 'center' }}>
+        <FontAwesomeIcon icon={faSquareMinus} role={Button} onClick={handleDecrementTempo} style={{ fontSize: 30 }}/>
         <input
           type="range"
           min="40"
@@ -61,11 +68,12 @@ const Metronome = () => {
           onChange={handleTempoChange}
           className="slider"
         />
-        <button onClick={handleIncrementTempo}>+</button>
+        <FontAwesomeIcon icon={faSquarePlus} role={Button} onClick={handleIncrementTempo} style={{ fontSize: 30 }}/>
       </div>
-      <h2>Beats per Measure: {beatsPerMeasure}</h2>
-      <div className="beats-per-measure-controls">
-        <button onClick={handleDecrementBeatsPerMeasure}>-</button>
+      <br />
+      <h5>Beats per Measure: {beatsPerMeasure}</h5>
+      <div className="beats-per-measure-controls" style={{ display: 'flex', justifyContent: 'center' }}>
+        <FontAwesomeIcon icon={faSquareMinus} role={Button} onClick={handleDecrementBeatsPerMeasure} style={{ fontSize: 30 }} />
         <input
           type="number"
           value={beatsPerMeasure}
@@ -74,7 +82,7 @@ const Metronome = () => {
           max="16"
           className="text-center"
         />
-        <button onClick={handleIncrementBeatsPerMeasure}>+</button>
+        <FontAwesomeIcon icon={faSquarePlus} role={Button} onClick={handleIncrementBeatsPerMeasure} style={{ fontSize: 30 }} />
       </div>
     </div>
   );
