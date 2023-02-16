@@ -5,8 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faPause, faStop, faGear, faWrench } from '@fortawesome/free-solid-svg-icons';
 import Timer from "./Timer";
-import Metronome from './Metronome';
-
+import Metronome from './Metronome'
 import musicLogic from "../music-logic.js"
 
 const PracticeFretboard = () => {
@@ -30,6 +29,7 @@ const PracticeFretboard = () => {
         alert('Enter a number greater than 0 and press Play.')
       }
     } else {
+      setStartCountdown(false);
       dispatch(pausePractice());
     } 
   };
@@ -81,9 +81,7 @@ const PracticeFretboard = () => {
           variant="success m-1" 
           onClick={handlePlayPauseClick}
           style={{ width: 50, height: 50, padding: 0, margin: 0 }}
-          ><FontAwesomeIcon 
-          icon={state.practiceRunning && !state.practicePaused ? faPause : faPlay} 
-          style={{ fontSize: 30 }} 
+          ><FontAwesomeIcon icon={state.practiceRunning && !state.practicePaused ? faPause : faPlay} style={{ fontSize: 30 }} 
         />
         </Button>
         <Button 
@@ -98,7 +96,7 @@ const PracticeFretboard = () => {
           ><FontAwesomeIcon icon={faGear} style={{ fontSize: 30 }} />
         </Button>
 
-        <Metronome />
+        <Metronome playing={startCountdown} />
 
         {showSettings && (
           <div>

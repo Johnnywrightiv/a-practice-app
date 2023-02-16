@@ -1,11 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquareMinus, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
+import { faSquareMinus, faSquarePlus, faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
 import { Button } from "react-bootstrap";
+import * as Tone from "tone";
 
-const Metronome = () => {
+const Metronome = ({ playing }) => {
   const [tempo, setTempo] = useState(120);
   const [beatsPerMeasure, setBeatsPerMeasure] = useState(4);
+
+  useEffect(() => {
+    const synth = new Tone.Synth().toDestination();
+    const loop = new Tone.Loop(time => {
+      synth.triggerAttackRelease("C4", "16n", time);
+    }, `${beatsPerMeasure}n`);
+  
+    if (playing) {
+      Tone.Transport.bpm.value = tempo;
+      loop.start(0);
+      Tone.Transport.start();
+    } else {
+      Tone.Transport.stop();
+      loop.stop();
+    }
+  
+    return () => {
+      loop.dispose();
+      synth.dispose();
+    };
+  }, [tempo, beatsPerMeasure, playing]);
 
   const handleTempoChange = event => {
     setTempo(event.target.value);
@@ -21,10 +43,6 @@ const Metronome = () => {
     if (parseInt(tempo) !== 40) {
       setTempo(parseInt(tempo) - 1);
     };
-  };
-
-  const handleBeatsPerMeasureChange = event => {
-    setBeatsPerMeasure(event.target.value);
   };
 
   const handleIncrementBeatsPerMeasure = () => {
@@ -58,6 +76,7 @@ const Metronome = () => {
           tempo <= 200 ? "Presto" : "Prestissimo"
         }</em>
 
+      <br />
       <div className="tempo-controls" style={{ display: 'flex', justifyContent: 'center' }}>
         <FontAwesomeIcon icon={faSquareMinus} role={Button} onClick={handleDecrementTempo} style={{ fontSize: 30 }}/>
         <input
@@ -70,18 +89,12 @@ const Metronome = () => {
         />
         <FontAwesomeIcon icon={faSquarePlus} role={Button} onClick={handleIncrementTempo} style={{ fontSize: 30 }}/>
       </div>
+      
       <br />
       <h5>Beats per Measure: {beatsPerMeasure}</h5>
       <div className="beats-per-measure-controls" style={{ display: 'flex', justifyContent: 'center' }}>
-        <FontAwesomeIcon icon={faSquareMinus} role={Button} onClick={handleDecrementBeatsPerMeasure} style={{ fontSize: 30 }} />
-        <input
-          type="number"
-          value={beatsPerMeasure}
-          onChange={handleBeatsPerMeasureChange}
-          min="1"
-          max="16"
-          className="text-center"
-        />
+        <FontAwesomeIcon icon={faSquareMinus } role={Button} onClick={handleDecrementBeatsPerMeasure} style={{ fontSize: 30 }} />
+        <h5 style={{ margin: "0 20px" }}>{beatsPerMeasure}</h5>
         <FontAwesomeIcon icon={faSquarePlus} role={Button} onClick={handleIncrementBeatsPerMeasure} style={{ fontSize: 30 }} />
       </div>
     </div>
