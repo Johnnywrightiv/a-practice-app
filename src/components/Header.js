@@ -9,7 +9,7 @@ const Header = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogIn = () => {
-    const input = prompt("Please enter your username (admin)");
+    const input = prompt("Please enter your username ('admin' for dummy auth test)");
     if (input === 'admin') {
       setLoggedIn(true);
     }

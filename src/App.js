@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-
+import { Container } from 'react-bootstrap';
 import Header from './components/Header';
 import Home from './components/Home';
 import PracticeFretboard from './components/PracticeFretboard';
@@ -7,8 +7,6 @@ import PracticeScales from './components/PracticeScales';
 import PracticeChords from './components/PracticeChords';
 import MoreIdeas from './components/MorePracticeIdeas';
 import NotFound from './components/NotFound';
-
-import { Container } from 'react-bootstrap';
 
 const App = () => {
   return (
